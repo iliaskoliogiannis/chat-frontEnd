@@ -1,0 +1,18 @@
+<div class="container mt-5" id="chat">
+  <div class="row border overflow-auto">
+    <ul class="col-12 list-group pt-2" style="height: 500px">
+      <li class="list-group-item border-0 bg-transparent" *ngFor="let msg of cs.chat">
+        <app-user-message
+          class="float-right ml-auto"
+          *ngIf="msg.userType === 'user'"
+          style="width: 80%"
+          [message]="msg"></app-user-message>
+        <app-admin-message
+          class="float-left mr-auto"
+          *ngIf="msg.userType === 'admin'"
+          style="width: 80%"
+          [message]="msg"></app-admin-message>
+      </li>
+    </ul>
+  </div>
+</div>

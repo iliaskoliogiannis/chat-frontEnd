@@ -1,0 +1,40 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <form>
+        <div class="form-group">
+          <textarea type="text" name="message" class="form-control" [(ngModel)]="msg" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="cs.adminSendMsg(msg)">send</button>
+      </form>
+    </div>
+    <div class="col-md-8 col-12 overflow-auto" style="height: 90vh">
+      <ul class="list-group" *ngFor="let msg of cs.chat">
+        <li class="row no-gutters list-group-item">
+          <div class="col-12 admin-msg border p-1"
+               [ngClass]="{
+                'admin-msg': msg.userType === 'admin',
+                'user-msg': msg.userType === 'user',
+                'deleted-msg': !msg.display
+               }" >
+            <b>{{ msg.username }}</b>
+            <span class="float-right">{{ msg.timestamp | date:'HH:mm' }}</span>
+            <hr class="mt-1">
+            <p>
+              {{ msg.message }}
+            </p>
+          </div>
+          <div id="delete" class="col-12">
+            <span
+              (click)="delete(msg._id)"
+              *ngIf="msg.display"><b>delete</b></span>
+            <span
+              style="color: red"
+              (click)="delete(msg._id)"
+              *ngIf="!msg.display"><b>deleted</b></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

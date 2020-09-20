@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <form>
+      <div class="form-group" *ngIf="!cs.nameSet">
+        <div class="input-group">
+          <input name="nickname" type="text" class="form-control" [(ngModel)]="name" placeholder="your nickname">
+          <div class="input-group-append">
+            <button class="btn btn-primary" (click)="cs.register(name)">Enter Chat</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mb-3" *ngIf="cs.nameSet">
+        <h4>{{ name }}</h4>
+      </div>
+      <div class="form-group">
+        <textarea type="text" name="message" class="form-control" [(ngModel)]="msg" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="cs.sendMsg(name, msg)">send</button>
+    </form>
+</div>
+
+<app-chat-table></app-chat-table>
